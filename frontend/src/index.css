@@ -1,0 +1,157 @@
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f7f8fc, #eef1f7);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+/* Page layout */
+.home {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+  min-height: 100vh;
+}
+
+/* Wrapper */
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.kanban-column {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 70vh;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.kanban-column h3 {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 8px 12px;
+  border-radius: 999px;
+  margin-bottom: 4px;
+}
+
+/* Accent colors */
+.todo h3 {
+  background: #e8f0ff;
+  color: #2f5bea;
+}
+
+.in-progress h3 {
+  background: #fff3e0;
+  color: #ff8b00;
+}
+
+.done h3 {
+  background: #e6f7ef;
+  color: #00875a;
+}
+
+.task-details {
+  background: #f0f1f3;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.task-details:hover {
+}
+
+.task-details h4 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.task-details p {
+  margin: 4px 0;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.task-details p:nth-of-type(2) {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+.create {
+  background: #f9fafc;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.create label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #666;
+  margin-top: 6px;
+}
+
+.create input {
+  width: 90%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.85rem;
+}
+
+.create input:focus {
+  outline: none;
+  border-color: #2f5bea;
+}
+
+.create button {
+  margin-top: 10px;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2f5bea, #5f82ff);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.create button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(47, 91, 234, 0.35);
+}
+
+.error {
+  margin-top: 6px;
+  color: #d32f2f;
+  font-size: 0.75rem;
+}
+
+header {
+  background: linear-gradient(135deg, #2f5bea, #5f82ff);
+  padding: 14px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar h1 {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
