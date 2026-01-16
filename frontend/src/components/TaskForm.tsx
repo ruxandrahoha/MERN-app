@@ -42,13 +42,13 @@ export default function TaskForm({ type }: TaskFormProps) {
   return (
     <div className="">
       <form className="create" onSubmit={handleSubmit}>
-        <label>Title</label>
+        <label>Title*</label>
         <input
           type="text"
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
-        <label>Description</label>
+        <label>Description (optional)</label>
         <input
           type="text"
           onChange={(e) => setDescription(e.target.value)}

@@ -26,7 +26,12 @@ export const tasksReducer = (state: TasksState, action: TaskAction) => {
     }
     case "CREATE_TASK": {
       return {
-        tasks: [action.payload, ...(state.tasks || [])],
+        tasks: [...(state.tasks || []), action.payload],
+      };
+    }
+    case "DELETE_TASK": {
+      return {
+        tasks: (state.tasks ?? []).filter((t) => t._id !== action.payload._id),
       };
     }
     default:
@@ -36,7 +41,7 @@ export const tasksReducer = (state: TasksState, action: TaskAction) => {
 
 export const TasksContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(tasksReducer, {
-    tasks: null,
+    tasks: [],
   });
 
   return (

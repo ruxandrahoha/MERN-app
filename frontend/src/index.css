@@ -1,19 +1,17 @@
 body {
   margin: 0;
-  background: linear-gradient(180deg, #f7f8fc, #eef1f7);
+  background: linear-gradient(180deg, #676785, #131414);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
 }
 
-/* Page layout */
 .home {
   display: flex;
   justify-content: center;
   padding: 32px;
+  padding-top: 100px;
   min-height: 100vh;
 }
-
-/* Wrapper */
 .tasks {
   display: grid;
   grid-template-columns: repeat(3, minmax(260px, 1fr));
@@ -23,7 +21,7 @@ body {
 }
 
 .kanban-column {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 16px;
   padding: 16px;
   display: flex;
@@ -44,7 +42,6 @@ body {
   margin-bottom: 4px;
 }
 
-/* Accent colors */
 .todo h3 {
   background: #e8f0ff;
   color: #2f5bea;
@@ -58,38 +55,6 @@ body {
 .done h3 {
   background: #e6f7ef;
   color: #00875a;
-}
-
-.task-details {
-  background: #f0f1f3;
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  cursor: grab;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.task-details:hover {
-}
-
-.task-details h4 {
-  margin: 0 0 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-
-.task-details p {
-  margin: 4px 0;
-  font-size: 0.8rem;
-  color: #555;
-}
-
-.task-details p:nth-of-type(2) {
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.65rem;
-  letter-spacing: 0.06em;
-  opacity: 0.7;
 }
 
 .create {
@@ -145,13 +110,100 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, #2f5bea, #5f82ff);
-  padding: 14px 24px;
+  background: #131414;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navbar h1 {
   color: white;
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+.task-details {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 8px rgba(0, 1, 1, 0.2);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.task-details:hover {
+  box-shadow: 0 6px 16px rgba(0, 1, 1, 0.3);
+}
+
+.task-details h4 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.task-details p {
+  margin: 4px 0;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.task-details p:nth-of-type(2) {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+}
+
+.task-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.task-details h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.task-details p {
+  margin: 3px 0;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.deleteBtn {
+  flex-shrink: 0;
+  max-width: 28px;
+  padding: 6px;
+  font-size: 1.5rem;
+  display: flex;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #b13535;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteBtn:hover {
+  background: rgba(255, 70, 70, 0.15);
 }
