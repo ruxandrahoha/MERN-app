@@ -4,6 +4,7 @@ import { useTasksContext } from "../hooks/useTasksContext";
 import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 interface TaskDetailsProp {
   task: Task;
@@ -14,12 +15,20 @@ export default function TaskDetails({ task }: TaskDetailsProp) {
   const [description, setDescription] = useState(task.description);
   const [isEditing, setIsEditing] = useState(false);
   const { dispatch, tasks } = useTasksContext();
+  const { user } = useAuthContext();
 
   const taskFromContext = tasks?.find((t) => t._id === task._id);
 
   async function handleDelete() {
+    if (!user) {
+      return;
+    }
+
     const response = await fetch("/api/tasks/" + task._id, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     const json = await response.json();
 
@@ -33,9 +42,16 @@ export default function TaskDetails({ task }: TaskDetailsProp) {
   }
 
   async function handleEdit() {
+    if (!user) {
+      return;
+    }
+
     const response = await fetch("/api/tasks/" + task._id, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
       body: JSON.stringify({ title, description }),
     });
 
@@ -79,7 +95,7 @@ export default function TaskDetails({ task }: TaskDetailsProp) {
             new Date(taskFromContext?.updatedAt || task.updatedAt),
             {
               addSuffix: true,
-            }
+            },
           )}
         </p>
       </div>

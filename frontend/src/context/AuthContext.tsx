@@ -1,18 +1,17 @@
-import { createContext, useReducer, type ReactNode } from "react";
+import { createContext, useReducer, useEffect, type ReactNode } from "react";
 
-type User = {
-  _id: string;
+export type User = {
+  _id?: string;
   email: string;
+  token: string;
+  user_id: string;
 };
 
 type AuthState = {
   user: User | null;
 };
 
-type AuthAction = {
-  type: "LOGIN" | "LOGOUT";
-  payload: User;
-};
+type AuthAction = { type: "LOGIN"; payload: User } | { type: "LOGOUT" };
 
 interface AuthContextType extends AuthState {
   dispatch: React.Dispatch<AuthAction>;
@@ -33,6 +32,14 @@ export function authReducer(state: AuthState, action: AuthAction): AuthState {
 
 export function AuthContextProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, { user: null });
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+
+    if (user) {
+      dispatch({ type: "LOGIN", payload: user });
+    }
+  }, []);
 
   console.log("AuthContext state: ", state);
 

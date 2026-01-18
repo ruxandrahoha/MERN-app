@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import type { Task } from "../types/Task";
 import { useTasksContext } from "../hooks/useTasksContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 interface TaskFormProps {
   type: Task["type"];
@@ -9,9 +10,10 @@ interface TaskFormProps {
 
 export default function TaskForm({ type, onClose }: TaskFormProps) {
   const { dispatch } = useTasksContext();
+  const { user } = useAuthContext();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -39,6 +41,11 @@ export default function TaskForm({ type, onClose }: TaskFormProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!user) {
+      setError("You must be logged in");
+      return;
+    }
+
     const task = { title, description, type };
 
     const response = await fetch("/api/tasks", {
@@ -46,6 +53,7 @@ export default function TaskForm({ type, onClose }: TaskFormProps) {
       body: JSON.stringify(task),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     });
 

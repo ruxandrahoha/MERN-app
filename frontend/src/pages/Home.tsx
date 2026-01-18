@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTasksContext } from "../hooks/useTasksContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 import type { Task } from "../types/Task";
 
 import TaskDetails from "../components/TaskDetails";
@@ -9,10 +10,15 @@ export default function Home() {
   const [addNewTask, setAddNewTask] = useState("");
 
   const { tasks, dispatch } = useTasksContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const response = await fetch("/api/tasks");
+      const response = await fetch("/api/tasks", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const json = await response.json();
 
       if (response.ok) {
@@ -20,8 +26,10 @@ export default function Home() {
       }
     };
 
-    fetchTasks();
-  }, [dispatch]);
+    if (user) {
+      fetchTasks();
+    }
+  }, [dispatch, user]);
 
   function getTasks(type: Task["type"]) {
     if (!tasks) return null;
