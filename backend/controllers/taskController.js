@@ -28,6 +28,12 @@ const getTask = async (req, res) => {
 const createTask = async (req, res) => {
   const { title, description, type } = req.body;
 
+  let emptyFields = [];
+
+  if (!title) {
+    return res.status(404).json({ error: "Please fill in the title field" });
+  }
+
   try {
     const task = await Task.create({ title, description, type });
     res.status(200).json(task);
@@ -65,8 +71,17 @@ const updateTask = async (req, res) => {
     { _id: id },
     {
       ...req.body,
+    },
+    {
+      new: true,
     }
   );
+
+  if (!task) {
+    return res.status(400).json({ error: "No such task" });
+  }
+
+  res.status(200).json(task);
 };
 
 module.exports = {

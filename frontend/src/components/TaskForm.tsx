@@ -58,7 +58,6 @@ export default function TaskForm({ type, onClose }: TaskFormProps) {
       setTitle("");
       setDescription("");
       setError(null);
-      console.log("new task added");
       dispatch({ type: "CREATE_TASK", payload: json });
     }
   };
