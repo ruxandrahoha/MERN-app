@@ -12,6 +12,7 @@ body {
   padding-top: 100px;
   min-height: 100vh;
 }
+
 .tasks {
   display: grid;
   grid-template-columns: repeat(3, minmax(260px, 1fr));
@@ -26,6 +27,7 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 14px;
   min-height: 70vh;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
@@ -40,6 +42,7 @@ body {
   padding: 8px 12px;
   border-radius: 999px;
   margin-bottom: 4px;
+  width: 90%;
 }
 
 .todo h3 {
@@ -55,6 +58,39 @@ body {
 .done h3 {
   background: #e6f7ef;
   color: #00875a;
+}
+
+.todo button {
+  background: #e8f0ff;
+  color: #2f5bea;
+}
+
+.in-progress button {
+  background: #fff3e0;
+  color: #ff8b00;
+}
+
+.done button {
+  background: #e6f7ef;
+  color: #00875a;
+}
+
+.todo button:hover,
+.todo button:focus {
+  background: #2f5bea;
+  color: #e8f0ff;
+}
+
+.in-progress button:hover,
+.in-progress button:focus {
+  background: #ff8b00;
+  color: #fff3e0;
+}
+
+.done button:hover,
+.done button:focus {
+  background: #00875a;
+  color: #e6f7ef;
 }
 
 .create {
@@ -90,7 +126,7 @@ body {
   padding: 8px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(135deg, #2f5bea, #5f82ff);
+  background: linear-gradient(135deg, #5a5a5a, #7d7d7d);
   color: white;
   font-size: 0.8rem;
   font-weight: 600;
@@ -100,7 +136,7 @@ body {
 
 .create button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(47, 91, 234, 0.35);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
 .error {
@@ -110,7 +146,7 @@ body {
 }
 
 header {
-  background: #131414;
+  background: #262a32;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,6 +180,7 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+  width: 90%;
 
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
@@ -206,4 +243,37 @@ header {
 
 .deleteBtn:hover {
   background: rgba(255, 70, 70, 0.15);
+}
+
+.addBtn {
+  background-color: rgba(195, 19, 19, 0.7);
+  border-radius: 20px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 13px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.addBtn:hover,
+.addBtn:focus {
+  background-color: rgba(195, 19, 19, 0.9);
 }
