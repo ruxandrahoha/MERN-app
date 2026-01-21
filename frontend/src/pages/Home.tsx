@@ -5,6 +5,7 @@ import type { Task } from "../types/Task";
 
 import TaskDetails from "../components/TaskDetails";
 import AddTask from "../components/AddTask";
+import { apiFetch } from "../api";
 
 export default function Home() {
   const [addNewTask, setAddNewTask] = useState("");
@@ -13,10 +14,10 @@ export default function Home() {
   const { user } = useAuthContext();
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      const response = await fetch("/api/tasks", {
+    const apiFetchTasks = async () => {
+      const response = await apiFetch("/api/tasks", {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user?.token}`,
         },
       });
       const json = await response.json();
@@ -27,7 +28,7 @@ export default function Home() {
     };
 
     if (user) {
-      fetchTasks();
+      apiFetchTasks();
     }
   }, [dispatch, user]);
 

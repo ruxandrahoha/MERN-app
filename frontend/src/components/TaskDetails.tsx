@@ -5,6 +5,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { MdOutlineEdit } from "react-icons/md";
 import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { apiFetch } from "../api";
 
 interface TaskDetailsProp {
   task: Task;
@@ -24,7 +25,7 @@ export default function TaskDetails({ task }: TaskDetailsProp) {
       return;
     }
 
-    const response = await fetch("/api/tasks/" + task._id, {
+    const response = await apiFetch("/api/tasks/" + task._id, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${user.token}`,
@@ -46,7 +47,7 @@ export default function TaskDetails({ task }: TaskDetailsProp) {
       return;
     }
 
-    const response = await fetch("/api/tasks/" + task._id, {
+    const response = await apiFetch("/api/tasks/" + task._id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

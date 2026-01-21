@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import type { Task } from "../types/Task";
 import { useTasksContext } from "../hooks/useTasksContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { apiFetch } from "../api";
 
 interface TaskFormProps {
   type: Task["type"];
@@ -48,7 +49,7 @@ export default function TaskForm({ type, onClose }: TaskFormProps) {
 
     const task = { title, description, type };
 
-    const response = await fetch("/api/tasks", {
+    const response = await apiFetch("/api/tasks", {
       method: "POST",
       body: JSON.stringify(task),
       headers: {

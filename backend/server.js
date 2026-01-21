@@ -1,12 +1,19 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const taskRoutes = require("./routes/tasks");
 const userRoutes = require("./routes/user");
 
 const app = express();
 
 //middleware
+app.use(
+  cors({
+    origin: process.env.ALLOWED_ORIGINS,
+    credentials: true,
+  }),
+);
 app.use(express.json());
 
 app.use((req, res, next) => {
